@@ -17,14 +17,20 @@
 
 ---
 
-## 📋 Información del Dataset
+## 📋 Información del Dataset y Régimen de Acceso Abierto
 
-**Nombre:** Seoul Bike Sharing Demand Dataset  
+**Nombre Oficial:** Seoul Bike Sharing Demand Dataset  
 **Fuente:** [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/560/seoul+bike+sharing+demand)  
 **Autor del Dataset:** Sathishkumar V E  
-**DOI:** 10.24432/C5F62R
+**Licencia:** Creative Commons Attribution 4.0 International (CC BY 4.0) — Libre para uso educativo, académico y benchmarking  
+**DOI:** 10.24432/C5F62R  
 
-### Descripción
+### Estrategia de Tratamiento de Datos y MLOps
+1. **Tratamiento Temporal y Cíclico:** La demanda horaria exhibe picos bimodales (horas pico de entrada y salida laboral: 8:00 AM y 6:00 PM) fuertemente condicionados por `Functioning Day` y `Holiday`. Se codificaron armónicos horarios y estacionales para alimentar ensambles de regresión (`RandomForestRegressor`, `GradientBoosting`).
+2. **Escalado y Normalización:** Estandarización de variables meteorológicas continuas (`Temperature`, `Humidity`, `Wind speed`, `Solar Radiation`) con `StandardScaler` para garantizar estabilidad de convergencia.
+3. **Política Zero Raw Bloat:** Estructura modular estándar con scripts de reentrenamiento (`C_src/retrain_model.py`), API REST en FastAPI (`G_api/`) y dashboard interactivo en Streamlit (`H_webInterface/`).
+
+### Descripción del Problema
 Este conjunto de datos contiene información sobre el sistema de bicicletas compartidas de Seúl, incluyendo el conteo de bicicletas alquiladas por hora junto con datos meteorológicos y estacionales. El objetivo es predecir la demanda de bicicletas basándose en las condiciones ambientales y temporales.
 
 ### Características Principales
